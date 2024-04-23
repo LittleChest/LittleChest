@@ -1,0 +1,18 @@
+name: github-stats-box
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+jobs:
+  github-stats-box:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - run: npx github-stats-box@1
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: f1fa47c5fb7cd432f7565466b292986e
+          ALL_COMMITS: true
+          K_FORMAT: false
