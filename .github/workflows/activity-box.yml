@@ -1,0 +1,15 @@
+name: activity-box
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+jobs:
+  activity-box:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JasonEtco/activity-box@master
+        env:
+          GH_PAT: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME: LittleChest
+          GIST_ID: c7335872f6be75ac328edbbffa9fa7df
