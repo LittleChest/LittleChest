@@ -1,14 +1,14 @@
-name: productive-box
+name: 作息
 on:
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
 jobs:
   productive-box:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - uses: maxam2017/productive-box@master
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: f36a8838e604220f0a2ca6b9511576d5
           TIMEZONE: Asia/Shanghai
