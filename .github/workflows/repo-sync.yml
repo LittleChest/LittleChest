@@ -50,11 +50,11 @@ jobs:
               
               if [ "$http_code" = "200" ] || [ "$http_code" = "201" ]; then
                 echo "✅ 成功: $owner/$repo"
-                ((success_count++))
+                ((++success_count))
               else
                 echo "❌ 失败: $owner/$repo (HTTP $http_code)"
                 echo "   响应: $body"
-                ((fail_count++))
+                ((++fail_count))
               fi
             else
               echo "⚠️  格式错误，跳过: $line"
