@@ -27,6 +27,7 @@ jobs:
 
           while IFS= read -r line
           do
+            line="${line//$'\r'/}"
             [ -z "$line" ] && continue
 
             if [[ $line =~ ^([^/]+)/([^:]+):(.+)$ ]]
