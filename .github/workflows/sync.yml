@@ -7,12 +7,23 @@ jobs:
   sync:
     runs-on: ubuntu-slim
     steps:
+      - name: Sync Docker
+        env:
+          OPENLIST_WEBHOOK: ${{ secrets.OPENLIST_WEBHOOK }}
+        run: |
+          if [ -z "$OPENLIST_WEBHOOK" ]
+          then
+            echo "⚠️ OPENLIST_WEBHOOK 变量未设置"
+          else
+            curl -s "$OPENLIST_WEBHOOK"
+          fi
       - name: Sync upstream repositories
         env:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
           REPO_SYNC: ${{ vars.REPO_SYNC }}
         run: |
-          if [ -z "$REPO_SYNC" ]; then
+          if [ -z "$REPO_SYNC" ]
+          then
             echo "❌ REPO_SYNC 变量未设置"
             exit 1
           fi
@@ -72,6 +83,7 @@ jobs:
           echo "❌ 失败: $fail_count"
           echo "================================"
 
-          if [ $fail_count -gt 0 ]; then
+          if [ $fail_count -gt 0 ]
+          then
             exit 1
           fi
